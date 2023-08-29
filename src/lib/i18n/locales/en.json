@@ -1,0 +1,34 @@
+{
+	"page_title": "Weather",
+	"page_title_in": "Weather in",
+	"search_city": "Search city",
+	"feels_like": "Feels like",
+	"wind": "Wind",
+	"humidity": "Humidity",
+	"pressure": "Pressure",
+	"visibility": "Visibility",
+	"sunrise": "Sunrise",
+	"sunset": "Sunset",
+	"wind_dir": {
+		"n": "N",
+		"ne": "NE",
+		"e": "E",
+		"se": "SE",
+		"s": "S",
+		"sw": "SW",
+		"w": "W",
+		"nw": "NW"
+	},
+	"speed": {
+		"m_s": "m/s",
+		"mph": "mph"
+	},
+	"pressure_unit": {
+		"hpa": "hPa",
+		"mm_hg": "mm Hg"
+	},
+	"km": "km",
+	"today": "today",
+	"tomorrow": "tomorrow",
+	"probability_of_precipitation": "Probability of precipitation"
+}

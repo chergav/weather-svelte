@@ -1,0 +1,34 @@
+{
+	"page_title": "Погода",
+	"page_title_in": "Погода в",
+	"search_city": "Поиск города",
+	"feels_like": "Ощущается как",
+	"wind": "Ветер",
+	"humidity": "Влажность",
+	"pressure": "Давление",
+	"visibility": "Видимость",
+	"sunrise": "Восход",
+	"sunset": "Закат",
+	"wind_dir": {
+		"n": "С",
+		"ne": "СВ",
+		"e": "В",
+		"se": "ЮВ",
+		"s": "Ю",
+		"sw": "ЮЗ",
+		"w": "З",
+		"nw": "СЗ"
+	},
+	"speed": {
+		"m_s": "м/с",
+		"mph": "миля/ч"
+	},
+	"pressure_unit": {
+		"hpa": "гПа",
+		"mm_hg": "мм рт.ст."
+	},
+	"km": "км",
+	"today": "сегодня",
+	"tomorrow": "завтра",
+	"probability_of_precipitation": "Вероятность осадков"
+}

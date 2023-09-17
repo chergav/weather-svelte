@@ -182,7 +182,7 @@ const createLink = city => {
 				dark:hover:bg-white/10
 				transition-colors
 			"
-			href=${`/city/${lat}/${lon}`}${units === 'imperial' ? '/imperial' : ''}
+			href=${`/geo:${lat},${lon}`}${units === 'imperial' ? '/imperial' : ''}
 		>
 			<span>${cityName}, ${state ? `${state}, ` : ''} ${country}</span>
 			<img class="ml-1" src="https://openweathermap.org/images/flags/${country.toLowerCase()}.png" alt="flag">

@@ -49,7 +49,7 @@ onMount(async () => {
 	language = navigator.language.slice(0, 2);
 	const weather = await data.owm.weather;
 	if (weather) {
-		history.pushState('', '', `city/${weather.coord.lat}/${weather.coord.lon}`);
+		history.pushState('', '', `geo:${weather.coord.lat},${weather.coord.lon}`);
 	}
 });
 </script>

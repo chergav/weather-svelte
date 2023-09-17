@@ -7,5 +7,5 @@ export async function load({ request }) {
 
 	const { latitude, longitude } = dev ? fallbackCoord : request.cf; // cloudflare request geo
 
-	throw redirect(308, `/city/${latitude}/${longitude}`);
+	throw redirect(308, `/geo:${latitude},${longitude}`);
 }

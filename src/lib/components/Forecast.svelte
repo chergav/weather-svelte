@@ -73,13 +73,7 @@ const getRelativeDate = (timestamp, timeZoneOffset) => {
 	const today = dateFormat(Date.now() + timeZoneOffset * 1000);
 	const tomorrow = dateFormat(Date.now() + timeZoneOffset * 1000 + 86400000);
 
-	if (date === today) {
-		return $_('today');
-	} else if (date === tomorrow) {
-		return $_('tomorrow');
-	}
-
-	return date;
+	return date === today ? $_('today') : date === tomorrow ? $_('tomorrow') : date;
 }
 
 const listToDays = list => {

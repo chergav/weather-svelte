@@ -1,3 +1,3 @@
 # Weather forecast
 
-## SvelteKit + Tailwind CSS + OpenWeather API
+SvelteKit + Tailwind CSS + OpenWeather API

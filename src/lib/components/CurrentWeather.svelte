@@ -2,12 +2,12 @@
 	<span class="text-amber-700 dark:text-amber-300">{dateFormat(weather.dt, weather.timezone)}</span>
 	<div class="text-neutral-600 dark:text-neutral-400">
 		<a
-			href={`/city/${weather.coord.lat}/${weather.coord.lon}`}
+			href={`/geo:${weather.coord.lat},${weather.coord.lon}`}
 			class="{!isImperial ? 'text-amber-700 dark:text-amber-300' : ''}"
 		>°C, {$_('speed.m_s')}</a>
 		<span class="mx-2"></span>
 		<a
-			href={`/city/${weather.coord.lat}/${weather.coord.lon}/imperial`}
+			href={`/geo:${weather.coord.lat},${weather.coord.lon}/imperial`}
 			class="{isImperial ? 'text-amber-700 dark:text-amber-300' : ''}"
 		>°F, {$_('speed.mph')}</a>
 	</div>

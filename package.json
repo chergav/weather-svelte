@@ -1,6 +1,6 @@
 {
-	"name": "sb-06.loc",
-	"version": "0.0.1",
+	"name": "weather-svelte-app",
+	"version": "1.0.0",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",

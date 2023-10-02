@@ -96,16 +96,17 @@
 				"
 			>
 				{#each searchResult.citys as city}
-					<li
-						on:click={() => {
-							value = '';
-						}}
-						on:keypress
-					>
-						{@html createLink(city)}
+					<li>
+						<SearchCityAnchor
+							units={units}
+							city={city}
+							on:click={() => {
+								value = '';
+							}}
+						/>
 					</li>
 				{:else}
-					<p class="text-sm text-gray-500">
+					<p class="p-1 text-sm text-gray-500">
 						Not found. Try city's name, comma, 2-letter country code (ISO3166).
 					</p>
 				{/each}
@@ -114,12 +115,12 @@
 			<p class="text-red-500">API Error: {searchResult.error}. Try later.</p>
 		{/if}
 	{:catch error}
-		<p class="text-red-500">Something went wrong... Try later.</p>
+		<p class="text-red-500">Something went wrong... Error: {error}. Try later.</p>
 	{/await}
 </form>
 
 <script>
-import { onMount } from 'svelte';
+import SearchCityAnchor from '$lib/components/SearchCityAnchor.svelte';
 import Icon from '$lib/components/Icon.svelte';
 import { mdiMagnify, mdiClose } from '@mdi/js';
 import { clickOutside } from '$lib/utilities/clickOutside';
@@ -131,19 +132,11 @@ let input;
 let value = '';
 let searchPromise;
 let cityListOpen = false;
-let loading = false;
-let language;
 
 $: if (!value) (searchPromise = null), (cityListOpen = false);
 
-onMount(() => {
-	language = navigator.language.slice(0, 2);
-});
-
 const searchCity = async () => {
 	if (!value) return;
-
-	loading = true;
 
 	const response = await fetch('/api/search-city', {
 		method: 'POST',
@@ -153,7 +146,6 @@ const searchCity = async () => {
 		},
 	});
 
-	loading = false;
 	cityListOpen = true;
 
 	return response.json();
@@ -161,32 +153,5 @@ const searchCity = async () => {
 
 const handleSearch = () => {
 	searchPromise = searchCity();
-};
-
-const createLink = city => {
-	const { name, state, country, lat, lon, local_names } = city;
-	const cityName =
-		local_names && Object.hasOwn(city.local_names, language)
-			? city.local_names[language]
-			: name;
-
-	return `
-		<a
-			class="
-				px-4
-				py-2
-				flex
-				items-center
-				rounded-2xl
-				hover:bg-black/10
-				dark:hover:bg-white/10
-				transition-colors
-			"
-			href=${`/geo:${lat},${lon}`}${units === 'imperial' ? '/imperial' : ''}
-		>
-			<span>${cityName}, ${state ? `${state}, ` : ''} ${country}</span>
-			<img class="ml-1" src="https://openweathermap.org/images/flags/${country.toLowerCase()}.png" alt="flag">
-		</a>
-	`;
 };
 </script>

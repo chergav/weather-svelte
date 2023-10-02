@@ -47,8 +47,6 @@ import { _ } from 'svelte-i18n';
 
 export let forecast;
 
-// console.log(forecast.list.reduce((a,v) => [...a, v.main.temp], []));
-
 const timeFormat = (timestamp, timeZoneOffset) => {
 	const date = new Intl.DateTimeFormat(undefined, {
 		hour: 'numeric',

@@ -53,11 +53,11 @@ import { _ } from 'svelte-i18n';
 export let data;
 let language = '';
 
-(async () => {
-	console.log(await data.owm.geo);
-	console.log(await data.owm.weather);
-	console.log(await data.owm.forecast);
-})();
+// (async () => {
+// 	console.log(await data.owm.geo);
+// 	console.log(await data.owm.weather);
+// 	console.log(await data.owm.forecast);
+// })();
 
 onMount(async () => {
 	language = navigator.language.slice(0, 2);

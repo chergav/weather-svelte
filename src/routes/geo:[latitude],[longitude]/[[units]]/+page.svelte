@@ -11,8 +11,8 @@
 {#await data.owm.weather}
 	Loading...
 {:then weather}
-	{#if weather?.cod == 200}
-		<CurrentWeather {weather} units={data.units} />
+	{#if +weather.cod === 200}
+		<CurrentWeather units={data.units} {weather} />
 	{:else}
 		<div class="text-red-500">Weather api error: {weather.message}</div>
 	{/if}
@@ -23,7 +23,7 @@
 {#await data.owm.forecast}
 	Loading...
 {:then forecast}
-	{#if forecast?.cod == 200}
+	{#if +forecast.cod === 200}
 		<Forecast {forecast} />
 	{:else}
 		<div class="text-red-500">Forecast api error: {forecast.message}</div>
@@ -65,11 +65,11 @@ onMount(async () => {
 
 const createHeader = geo => {
 	const { name, state, country } = geo;
-	const local_name =
+	const localName =
 		Object.hasOwn(geo, 'local_names') && Object.hasOwn(geo.local_names, language)
 			? geo.local_names[language]
 			: name;
 
-	return `${local_name}, ${state ? `${state}, ` : ''} ${country}`;
+	return `${localName}, ${state ? `${state}, ` : ''} ${country}`;
 };
 </script>

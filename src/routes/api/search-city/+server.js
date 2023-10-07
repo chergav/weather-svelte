@@ -5,7 +5,7 @@ import { json } from '@sveltejs/kit';
 export async function POST({ request, fetch }) {
 	const { search } = await request.json();
 
-	const [ city, country ] = search.split(',').map(i => i.trim());
+	const [city, country] = search.split(',').map(i => i.trim());
 
 	const q = `${city}${country ? `,${country}` : ''}`;
 

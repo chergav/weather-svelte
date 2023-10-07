@@ -1,7 +1,7 @@
 {#await data.owm.weather}
 	Loading...
 {:then weather}
-	{#if weather.cod == 200}
+	{#if +weather.cod === 200}
 		<h1 class="flex items-center text-2xl">{weather.name}, {weather.sys.country}</h1>
 		<CurrentWeather {weather} />
 	{/if}
@@ -14,7 +14,7 @@
 {#await data.owm.forecast}
 	Loading...
 {:then forecast}
-	{#if forecast.cod == 200}
+	{#if +forecast.cod === 200}
 		<Forecast {forecast} />
 	{/if}
 {:catch error}
@@ -38,15 +38,8 @@ import Forecast from '$lib/components/Forecast.svelte';
 
 /** @type {import('./$types').PageData} */
 export let data;
-let language = '';
-
-// (async () => {
-// 	console.log(await data.owm.weather);
-// 	console.log(await data.owm.forecast);
-// })();
 
 onMount(async () => {
-	language = navigator.language.slice(0, 2);
 	const weather = await data.owm.weather;
 	if (weather) {
 		history.pushState('', '', `geo:${weather.coord.lat},${weather.coord.lon}`);

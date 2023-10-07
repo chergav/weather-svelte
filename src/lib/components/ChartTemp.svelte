@@ -1,19 +1,19 @@
 <svg
+	height={chartHeight}
 	viewBox="0 0 {chartWidth} {chartHeight}"
 	width={chartWidth}
-	height={chartHeight}
 	xmlns="http://www.w3.org/2000/svg"
 >
 	<!-- <rect width="100%" height="100%" stroke="#555" fill="none" /> -->
 	<path
+		class="stroke-amber-700 dark:stroke-amber-300"
 		d={svgPathD(points, bezierCommand)}
 		fill="none"
 		stroke-width="1"
-		class="stroke-amber-700 dark:stroke-amber-300"
 	/>
 	{#each points as point}
 		{@const [cx, cy] = point}
-		<circle {cx} {cy} r="2" class="fill-grey-900 dark:fill-white" />
+		<circle class="fill-grey-900 dark:fill-white" {cx} {cy} r="2" />
 	{/each}
 </svg>
 
@@ -30,14 +30,15 @@ const tempMax = Math.max(...roundedTemps);
 
 const yUnit = (chartHeight * 0.7) / (tempMax - tempMin || 1); // 0.7 - 30% reduced for padding
 const yPoints = roundedTemps.map(v => (v - tempMin) * yUnit);
-const points = yPoints.reduce((a, v, i) => [...a, [25 + i * 70, chartHeight * 0.85 - v]], []); // 0.85 - 15% top and bottom padding
+// 0.85 - 15% top and bottom padding
+const points = yPoints.reduce((a, v, i) => [...a, [25 + i * 70, chartHeight * 0.85 - v]], []);
 
 const line = (pointA, pointB) => {
 	const lengthX = pointB[0] - pointA[0];
 	const lengthY = pointB[1] - pointA[1];
 	return {
 		length: Math.sqrt(Math.pow(lengthX, 2) + Math.pow(lengthY, 2)),
-		angle: Math.atan2(lengthY, lengthX),
+		angle: Math.atan2(lengthY, lengthX)
 	};
 };
 

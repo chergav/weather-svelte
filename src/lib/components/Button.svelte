@@ -1,6 +1,4 @@
 <button
-	type="button"
-	aria-label="button"
 	class="
 		inline-flex
 		items-center
@@ -16,8 +14,10 @@
 		{classSize}
 		{className}
 	"
+	aria-label="button"
 	{disabled}
 	{title}
+	type="button"
 	on:click
 >
 	{#if icon}

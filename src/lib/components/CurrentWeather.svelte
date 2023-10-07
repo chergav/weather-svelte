@@ -2,13 +2,13 @@
 	<span class="text-amber-700 dark:text-amber-300">{dateFormat(weather.dt, weather.timezone)}</span>
 	<div class="text-neutral-600 dark:text-neutral-400">
 		<a
+			class={!isImperial ? 'text-amber-700 dark:text-amber-300' : ''}
 			href={`/geo:${weather.coord.lat},${weather.coord.lon}`}
-			class="{!isImperial ? 'text-amber-700 dark:text-amber-300' : ''}"
 		>°C, {$_('speed.m_s')}</a>
 		<span class="mx-2"></span>
 		<a
+			class={isImperial ? 'text-amber-700 dark:text-amber-300' : ''}
 			href={`/geo:${weather.coord.lat},${weather.coord.lon}/imperial`}
-			class="{isImperial ? 'text-amber-700 dark:text-amber-300' : ''}"
 		>°F, {$_('speed.mph')}</a>
 	</div>
 </div>
@@ -26,11 +26,11 @@
 	<div class="mb-6 flex flex-col">
 		<div class="flex items-center">
 			<img
-				src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
 				alt="weather"
-				width="100"
 				height="100"
+				src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
 				title={weather.weather[0].description}
+				width="100"
 			/>
 			<span class="text-6xl font-light">{Math.round(weather.main.temp)}°</span>
 			<span class="ml-4 text-lg">{weather.weather[0].description}</span>
@@ -52,30 +52,30 @@
 	>
 		<div class="flex items-center justify-between gap-2">
 			<span>
-				<Icon d={mdiWeatherWindy} class="inline-block" />
+				<Icon class="inline-block" d={mdiWeatherWindy} />
 				{$_('wind')}
 			</span>
 			<div class="flex items-center gap-2">
 				{$_(`wind_dir.${degToDirection8(weather.wind.deg)}`, { default: '' })}
 				<Icon
-					size="sm"
-					d={mdiNavigationOutline}
-					class="inline-block !mr-0"
 					style="transform: scale(-1) rotate({weather.wind.deg}deg);"
+					class="inline-block !mr-0"
+					d={mdiNavigationOutline}
+					size="sm"
 				/>
 				<span>{weather.wind.speed.toFixed(1)} {unitOfSpeed}</span>
 			</div>
 		</div>
 		<div class="flex items-center justify-between gap-2">
 			<span>
-				<Icon d={mdiWater} class="inline-block" />
+				<Icon class="inline-block" d={mdiWater} />
 				{$_('humidity')}
 			</span>
 			<span>{weather.main.humidity}%</span>
 		</div>
 		<div class="flex items-center justify-between gap-2">
 			<span>
-				<Icon d={mdiGauge} class="inline-block" />
+				<Icon class="inline-block" d={mdiGauge} />
 				{$_('pressure')}
 			</span>
 			<span>
@@ -85,21 +85,21 @@
 		</div>
 		<div class="flex items-center justify-between gap-2">
 			<span>
-				<Icon d={mdiEyeOutline} class="inline-block" />
+				<Icon class="inline-block" d={mdiEyeOutline} />
 				{$_('visibility')}
 			</span>
 			<span>{(weather.visibility / 1000).toFixed(1)} {$_('km')}</span>
 		</div>
 		<div class="flex items-center justify-between gap-2">
 			<span>
-				<Icon d={mdiWeatherSunsetUp} class="inline-block" />
+				<Icon class="inline-block" d={mdiWeatherSunsetUp} />
 				{$_('sunrise')}
 			</span>
 			<span>{timeFormat(weather.sys.sunrise, weather.timezone)}</span>
 		</div>
 		<div class="flex items-center justify-between gap-2">
 			<span>
-				<Icon d={mdiWeatherSunsetDown} class="inline-block" />
+				<Icon class="inline-block" d={mdiWeatherSunsetDown} />
 				{$_('sunset')}
 			</span>
 			<span>{timeFormat(weather.sys.sunset, weather.timezone)}</span>
@@ -133,7 +133,7 @@ const dateFormat = (timestamp, timeZoneOffset) => {
 		month: 'long',
 		hour: 'numeric',
 		minute: 'numeric',
-		timeZone: 'UTC',
+		timeZone: 'UTC'
 	});
 	return date.format(new Date((timestamp + timeZoneOffset) * 1000));
 };
@@ -141,7 +141,7 @@ const dateFormat = (timestamp, timeZoneOffset) => {
 const timeFormat = (timestamp, timeZoneOffset) => {
 	const date = new Intl.DateTimeFormat(undefined, {
 		timeStyle: 'short',
-		timeZone: 'UTC',
+		timeZone: 'UTC'
 	});
 	return date.format(new Date((timestamp + timeZoneOffset) * 1000));
 };

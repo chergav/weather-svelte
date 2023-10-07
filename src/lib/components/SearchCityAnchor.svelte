@@ -15,8 +15,8 @@
 	<span>{cityName}, {state ? `${state}, ` : ''} {country}</span>
 	<img
 		class="ml-1"
-		src="https://openweathermap.org/images/flags/{country.toLowerCase()}.png"
 		alt="flag"
+		src="https://openweathermap.org/images/flags/{country.toLowerCase()}.png"
 	/>
 </a>
 
@@ -26,12 +26,12 @@ import { onMount } from 'svelte';
 export let units;
 export let city;
 
-const { name, state, country, lat, lon, local_names } = city;
+const { name, state, country, lat, lon, local_names: localNames } = city;
 let language;
 
 onMount(() => {
 	language = navigator.language.slice(0, 2);
 });
 
-$: cityName = local_names && Object.hasOwn(local_names, language) ? local_names[language] : name;
+$: cityName = localNames && Object.hasOwn(localNames, language) ? localNames[language] : name;
 </script>

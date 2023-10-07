@@ -3,8 +3,8 @@
 		<a href="/">Weather</a>
 	</h1>
 	<Button
-		round
 		icon={themeClass === 'dark' ? mdiWeatherSunny : mdiWeatherNight}
+		round
 		on:click={toggleTheme}
 	/>
 </header>
@@ -42,7 +42,7 @@ onMount(() => {
 
 		try {
 			localStorage.setItem('theme', themeClass);
-		} catch {}
+		} catch { /* empty */ }
 	};
 
 	setTheme(themeClass);

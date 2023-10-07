@@ -1,15 +1,13 @@
 <form
-	on:submit|preventDefault={handleSearch}
 	class="relative flex items-center"
-	use:clickOutside
+	on:submit|preventDefault={handleSearch}
 	on:click_outside={() => {
 		cityListOpen = false;
 	}}
+	use:clickOutside
 >
 	<input
-		type="text"
-		spellcheck="false"
-		aria-label="Search city"
+		bind:this={input}
 		class="
 			w-full
 			px-12
@@ -25,32 +23,34 @@
 			bg-white
 			dark:bg-neutral-900
 			{cityListOpen
-			? 'rounded-t-3xl border-opacity-100 dark:border-opacity-100 shadow-lg'
-			: 'rounded-full'}
+				? 'rounded-t-3xl border-opacity-100 dark:border-opacity-100 shadow-lg'
+				: 'rounded-full'}
 			placeholder:text-neutral-500
 			placeholder:text-sm
 		"
+		aria-label="Search city"
+		placeholder={$_('search_city')}
+		spellcheck="false"
+		type="text"
 		bind:value
-		bind:this={input}
 		on:focus={() => {
 			if (searchPromise) cityListOpen = true;
 		}}
-		placeholder={$_('search_city')}
 	/>
 
-	<Icon d={mdiMagnify} class="absolute left-4 text-neutral-500" />
+	<Icon class="absolute left-4 text-neutral-500" d={mdiMagnify} />
 
 	<div class="absolute right-4 flex items-center gap-4">
 		<button
-			type="button"
-			aria-label="Reset button"
-			title="Clear"
 			class="
 				text-neutral-500
 				{value ? '' : 'opacity-0'}
 				transition-opacity
 			"
+			aria-label="Reset button"
 			disabled={!value}
+			title="Clear"
+			type="button"
 			on:click={() => {
 				value = '';
 				input.focus();
@@ -98,8 +98,8 @@
 				{#each searchResult.citys as city}
 					<li>
 						<SearchCityAnchor
-							units={units}
-							city={city}
+							{city}
+							{units}
 							on:click={() => {
 								value = '';
 							}}
@@ -142,8 +142,8 @@ const searchCity = async () => {
 		method: 'POST',
 		body: JSON.stringify({ search: value }),
 		headers: {
-			'content-type': 'application/json',
-		},
+			'content-type': 'application/json'
+		}
 	});
 
 	cityListOpen = true;

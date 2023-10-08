@@ -1,0 +1,22 @@
+<div
+	class="
+		w-full
+		p-3
+		flex
+		place-content-center
+	"
+>
+	<div
+		class="
+			animate-spin
+			w-6
+			h-6
+			rounded-full
+			border-2
+			border-neutral-200
+			border-r-blue-600
+			dark:border-neutral-800
+			dark:border-r-blue-600
+		"
+	/>
+</div>

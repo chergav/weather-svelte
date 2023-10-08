@@ -1,7 +1,7 @@
 <SearchCity units={data.units} />
 
 {#await data.owm.geo}
-	Loading...
+	<Loader />
 {:then geo}
 	<h1 class="my-5 text-2xl">{createHeader(geo[0])}</h1>
 {:catch error}
@@ -9,7 +9,7 @@
 {/await}
 
 {#await data.owm.weather}
-	Loading...
+	<Loader />
 {:then weather}
 	{#if +weather.cod === 200}
 		<CurrentWeather units={data.units} {weather} />
@@ -21,7 +21,7 @@
 {/await}
 
 {#await data.owm.forecast}
-	Loading...
+	<Loader />
 {:then forecast}
 	{#if +forecast.cod === 200}
 		<Forecast {forecast} />
@@ -47,17 +47,12 @@ import { onMount } from 'svelte';
 import SearchCity from '$lib/components/SearchCity.svelte';
 import CurrentWeather from '$lib/components/CurrentWeather.svelte';
 import Forecast from '$lib/components/Forecast.svelte';
+import Loader from '$lib/components/Loader.svelte';
 import { _ } from 'svelte-i18n';
 
 /** @type {import('./$types').PageData} */
 export let data;
 let language = '';
-
-// (async () => {
-// 	console.log(await data.owm.geo);
-// 	console.log(await data.owm.weather);
-// 	console.log(await data.owm.forecast);
-// })();
 
 onMount(async () => {
 	language = navigator.language.slice(0, 2);

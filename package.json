@@ -11,14 +11,14 @@
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-cloudflare": "^2.3.3",
-		"@sveltejs/kit": "^1.25.1",
+		"@sveltejs/kit": "^3.0.0",
 		"autoprefixer": "^10.4.16",
 		"eslint": "^8.51.0",
 		"eslint-plugin-svelte": "^2.34.0",
-		"postcss": "^8.4.31",
-		"svelte": "^4.2.1",
+		"postcss": "^8.5.23",
+		"svelte": "^5.55.7",
 		"tailwindcss": "^3.3.3",
-		"vite": "^4.4.11"
+		"vite": "^6.4.5"
 	},
 	"type": "module",
 	"dependencies": {
